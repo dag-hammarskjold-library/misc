@@ -9,3 +9,9 @@ DROP       all  --  216.244.66.0/24      anywhere
 Add new things to this list, e.g.,:
 
 $ sudo iptables -A INPUT -s 216.244.66.0/24 -j DROP
+
+Find out which IPs might be candidates to drop:
+
+cd to DSpace logs dir, e.g., /dspace-ext/logs/
+
+$ cat localhost_access_log.2017-07-13.txt |cut -d ' ' -f1 |sort -nr|uniq -c|sort -nr|head
