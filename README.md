@@ -1,3 +1,7 @@
+# Droplist
+
+Why: You have lots of incoming connections from bots and probes and you just want to exclude them.
+
 ## Find out what filters are in place
 
 `$ sudo iptables -L`
@@ -33,3 +37,9 @@ cd to DSpace logs dir, e.g., /dspace-ext/logs/
       1302 66.249.66.66
 
 Ignore 127.0.0.1, since that's all coming from the local server. The others you can run through IP Lookup tools to locate the owner. If it's a cloud computing company, drop it per the above command.
+
+# Update NAT Routing (Linux)
+
+Why: You have an application listening on one port, but need to connect to it on a different port. Typical use case is a Tomcat server on 8080, and you don't want/don't have a web server proxied to it, so you just reroute from port 80 to port 8080.
+
+`iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 8080`
